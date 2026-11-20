@@ -5,6 +5,7 @@ export const siteNavigation = [
   { href: '/portfolio', label: 'Reference' },
   { href: '/paketi', label: 'Paketi' },
   { href: '/ponudba', label: 'Ponudba' },
+  { href: '/kuponi', label: 'Kuponi' },
   { href: '/o-nas', label: 'O nas' },
   { href: '/kontakt', label: 'Kontakt' },
 ] as const;
