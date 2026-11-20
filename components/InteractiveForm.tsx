@@ -18,7 +18,7 @@ export default function InteractiveForm({ locale, className, children }: Props) 
     if (pending) return;
     const form = event.currentTarget;
     const values = new FormData(form);
-    const data = Object.fromEntries(values.entries());
+    const data: Record<string, unknown> = Object.fromEntries(values.entries());
     // HTML checkboxes serialize to "on", but the server expects a boolean.
     data.consent = values.get('consent') === 'on' || values.get('consent') === 'true';
     setPending(true);
