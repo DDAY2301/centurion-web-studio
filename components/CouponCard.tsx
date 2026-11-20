@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { COUPON_VARIANTS, CAMPAIGN } from '@/lib/campaign';
 
 type CouponVariantId = typeof COUPON_VARIANTS[number]['id'];
