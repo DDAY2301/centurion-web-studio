@@ -1,74 +1,29 @@
-name: CI - Continuous Integration
-
+name: Lumeli CI
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
-
+permissions:
+  contents: read
 jobs:
-  linting:
-    name: Lint
-    runs-on: ubuntu-latest
-
+  verify:
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-
-      - name: Namesti Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          cache: 'npm'
-
-      - name: Namesti odvisnice
-        run: npm ci
-
-      - name: Poženi lint
-        run: npm run lint 2>/dev/null || echo "Ni konfiguracije za lint"
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    needs: linting
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Namesti Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-
-      - name: Namesti odvisnice
-        run: npm ci
-
-      - name: Build
+          node-version: '22'
+          cache: npm
+      - name: Install reproducible dependencies
+        run: npm ci --no-fund
+      - name: TypeScript
+        run: npm run typecheck
+      - name: ESLint
+        run: npm run lint
+      - name: Unit tests
+        run: npm test -- --runInBand
+      - name: Production build
         run: npm run build
-
-      - name: Preveri velikost izračuna
-        run: |
-          size=$(du -sm .next/static 2>/dev/null | cut -f1 || echo "50")
-          if [ "$size" -gt 50 ]; then
-            echo "Opozorilo: Velikost izračuna je $size MB"
-          fi
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Namesti Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-
-      - name: Namesti odvisnice
-        run: npm ci
-
-      - name: Poženi teste
-        run: npm test -- --passWithNoTests 2>/dev/null || echo "Ni konfiguracije za teste"
+      - name: Production dependency security audit
+        run: npm audit --omit=dev --audit-level=high

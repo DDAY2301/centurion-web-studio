@@ -1,54 +1,28 @@
-# Dependencies
+# Dependencies and generated outputs
 node_modules/
-
-# Production build
 .next/
 out/
 dist/
+coverage/
+*.tsbuildinfo
 
-# Environment
-.env.local
-.env.production
-.env.test
+# Real credentials and environment overrides
+.env
+.env.*
 !.env.example
 
-# Editor
+# Local tools, logs and operating-system files
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-
-# OS
 .DS_Store
 Thumbs.db
-
-# Logs
 *.log
 logs/
-
-# Test
-coverage/
-*.test.ts
-*.test.tsx
-*.spec.ts
-*.spec.tsx
-
-# Temporary
 tmp/
 temp/
-
-# Build artifacts
-*.exe
-*.msi
-
-# Cache
 .cache/
-.parcel-cache/
-
-# Local env example (do not commit actual values)
-.env.example
-
-# OS-specific
 *.tmp
-*.temp
+
+# Source tests and .env.example are intentionally NOT ignored.
