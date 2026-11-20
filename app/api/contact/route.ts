@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Type definitions
-interface ContactFormData {
+export const runtime = 'nodejs';
+
+const MAX_BODY_BYTES = 8_192;
+
+type ContactInput = {
   name: string;
   company?: string;
   email: string;
@@ -10,124 +13,57 @@ interface ContactFormData {
   message: string;
   couponCode?: string;
   consent: boolean;
+};
+
+function validText(value: unknown, max: number): value is string {
+  return typeof value === 'string' && value.trim().length > 0 && value.length <= max;
 }
 
-interface Lead {
-  lead_id: string;
-  company_name: string;
-  contact_name: string;
-  contact_email: string;
-  contact_phone?: string;
-  requested_service: string;
-  coupon_code?: string;
-  enquiry_source: string;
-  created_at: string;
-  status: string;
-  notes: string;
+function response(error: string, status: number) {
+  return NextResponse.json({ success: false, error }, { status });
 }
 
-// Rate limiting
-const ipCounts = new Map<string, number>();
-const MAX_REQUESTS_PER_MINUTE = 5;
-
-// Contact API endpoint
 export async function POST(request: NextRequest) {
-  try {
-    // Rate limiting
-    const ip = request.headers.get('x-forwarded-for') || 'unknown';
-    const count = ipCounts.get(ip) || 0;
-
-    if (count > MAX_REQUESTS_PER_MINUTE) {
-      return NextResponse.json(
-        { error: 'Preveč zahtevkov. Poskusite znova za nekaj minut.' },
-        { status: 429 }
-      );
-    }
-    ipCounts.set(ip, count + 1);
-
-    // Parse request body
-    const body = await request.json();
-    const { name, company, email, phone, service, message, couponCode, consent } = body as ContactFormData;
-
-    // Validation
-    if (!name || !email || !service || !message || consent !== true) {
-      return NextResponse.json(
-        { error: 'Vsi obvezni podatki morajo biti izpolnjeni.' },
-        { status: 400 }
-      );
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Vnesti veljaven email naslov.' },
-        { status: 400 }
-      );
-    }
-
-    // Create lead record
-    const lead: Lead = {
-      lead_id: `lead_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      company_name: company || 'Neizpolnjeno',
-      contact_name: name,
-      contact_email: email,
-      contact_phone: phone || undefined,
-      requested_service: service,
-      coupon_code: couponCode || undefined,
-      enquiry_source: 'web_form',
-      created_at: new Date().toISOString(),
-      status: 'NEW',
-      notes: message
-    };
-
-    // In production, this would:
-    // 1. Save to database
-    // 2. Send email notification
-    // 3. Apply coupon validation
-    // 4. Integrate with CRM
-
-    // Simulate successful submission
-    console.log('New lead submitted:', JSON.stringify(lead, null, 2));
-
-    // Return success response
-    return NextResponse.json(
-      {
-        success: true,
-        message: 'Hvala! Vaša sporočila bom prejel/a.',
-        lead_id: lead.lead_id
-      },
-      { status: 201 }
-    );
-
-  } catch (error) {
-    console.error('Contact API error:', error);
-    return NextResponse.json(
-      { error: 'Prišlo je do napake ob obdelavi zahtevka.' },
-      { status: 500 }
-    );
+  const contentType = request.headers.get('content-type') ?? '';
+  if (!contentType.includes('application/json')) {
+    return response('Zahtevan je JSON.', 415);
   }
-}
 
-// Health check endpoint (for monitoring)
-export async function GET() {
-  return NextResponse.json({
-    status: 'up',
-    timestamp: new Date().toISOString()
-  });
-}
-
-// Handle CORS preflight requests
-export async function OPTIONS() {
-  return NextResponse.json(
-    null,
-    {
-      status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type'
-      }
+  let input: unknown;
+  try {
+    const raw = await request.text();
+    if (Buffer.byteLength(raw, 'utf8') > MAX_BODY_BYTES) {
+      return response('Sporočilo je predolgo.', 413);
     }
-  );
+    input = JSON.parse(raw);
+  } catch {
+    return response('Neveljavni podatki.', 400);
+  }
+
+  if (!input || typeof input !== 'object' || Array.isArray(input)) {
+    return response('Neveljavni podatki.', 400);
+  }
+
+  const data = input as Partial<ContactInput>;
+  if (!validText(data.name, 120) ||
+      !validText(data.email, 254) ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email) ||
+      !validText(data.service, 100) ||
+      !validText(data.message, 5_000) ||
+      data.consent !== true ||
+      (data.company != null && typeof data.company !== 'string') ||
+      (data.phone != null && typeof data.phone !== 'string') ||
+      (data.couponCode != null && typeof data.couponCode !== 'string')) {
+    return response('Preverite obvezna polja in e-poštni naslov.', 400);
+  }
+
+  // Fail closed. The former implementation returned a false success and logged
+  // contact details without delivering or persistently storing the enquiry.
+  // Do not accept personal data until a real, tested delivery service and
+  // durable rate limiter are configured and a privacy notice is approved.
+  return response('Spletna oddaja povpraševanj trenutno ni na voljo. Prosimo, uporabite preverjen kontaktni kanal.', 503);
+}
+
+export async function GET() {
+  return NextResponse.json({ status: 'available', delivery: 'not-configured' });
 }
