@@ -1,19 +1,19 @@
-import Link, { LinkProps } from 'next/link';
+import React from 'react';
+import Link, { type LinkProps } from 'next/link';
 import { cn } from '@/lib/utils';
-import { VariantProps, cva } from 'class-variance-authority';
-import { ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   'inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'bg-accent-primary text-white hover:bg-accent-600 focus-visible:ring-accent-primary',
-        destructive: 'bg-red-500 text-white hover:bg-red-600 focus-visible:ring-red-500',
-        outline: 'border border-brand-border bg-brand-card text-brand-light hover:bg-brand-subtle focus-visible:ring-accent-primary',
-        secondary: 'bg-brand-card text-white hover:bg-brand-subtle focus-visible:ring-accent-primary',
-        ghost: 'hover:bg-brand-subtle hover:text-white focus-visible:ring-accent-primary',
-        link: 'text-accent-primary hover:underline focus-visible:ring-accent-primary',
+        default: 'bg-accent-500 text-white hover:bg-accent-600',
+        destructive: 'bg-red-500 text-white hover:bg-red-600',
+        outline: 'border border-brand-200 bg-white text-brand-800 hover:bg-brand-50',
+        secondary: 'bg-brand-100 text-brand-800 hover:bg-brand-200',
+        ghost: 'hover:bg-brand-100',
+        link: 'text-accent-600 hover:underline',
       },
       size: {
         default: 'h-10 px-4 py-2',
@@ -23,10 +23,7 @@ const buttonVariants = cva(
         icon: 'h-10 w-10',
       },
     },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
+    defaultVariants: { variant: 'default', size: 'default' },
   }
 );
 
@@ -34,31 +31,28 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  children: ReactNode;
+  href?: LinkProps['href'];
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Link : 'button';
-    const classes = buttonVariants({ variant, size, className, 'aria-disabled': props.disabled });
+  ({ className, variant, size, asChild = false, href, children, ...props }, ref) => {
+    const classes = cn(buttonVariants({ variant, size }), className);
 
-    if (asChild) {
+    if (asChild && href) {
       return (
-        <Link ref={ref} className={classes} {...(props as LinkProps & { 'aria-disabled': boolean })}>
-          {props.children}
+        <Link href={href} className={classes}>
+          {children}
         </Link>
       );
     }
 
     return (
-      <button
-        ref={ref}
-        className={classes}
-        {...props}
-      />
+      <button ref={ref} className={classes} {...props}>
+        {children}
+      </button>
     );
   }
 );
 Button.displayName = 'Button';
 
-export { Button, buttonVariants };
+export { Button };
