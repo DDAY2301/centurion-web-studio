@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageIntro from '@/components/PageIntro';
+import { CAMPAIGN, isCampaignActive } from '@/lib/campaign';
+
+export const revalidate = 300;
 
 export const metadata: Metadata = { title: 'Paketi', description: 'Primerjajte tri izhodišča za spletni projekt pri Lumeli.' };
 
@@ -11,16 +14,20 @@ const packages = [
 ];
 
 export default function PaketiPage() {
+  const active = isCampaignActive();
   return (
     <main id="main">
       <PageIntro eyebrow="Paketi" title="Pravo izhodišče za vsako idejo." description="Obseg in cena se določita glede na cilje projekta. Spodnji paketi predstavljajo različne tipe sodelovanja, ne vnaprej določene ponudbe." />
+      {active && <div className="bg-[#293b34] px-5 py-7 text-center text-sm leading-7 text-white sm:px-8"><strong>Black Friday −30 %</strong> na vse pakete Lumeli do {CAMPAIGN.endLabel}. Koda: <strong>{CAMPAIGN.code}</strong>. <Link href="/kuponi" className="ml-2 underline underline-offset-4">Oglej si kupone ↗</Link></div>}
       <section className="bg-white px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
           {packages.map((item, index) => (
             <article key={item.title} className={`flex flex-col rounded-[2rem] border p-8 ${index === 1 ? 'border-[#94b4a0] bg-[#edf3eb]' : 'border-[#dce4d9] bg-white'}`}>
               <p className="text-xs font-bold uppercase tracking-[.19em] text-[#648172]">{item.subtitle}</p>
+              {active && <p className="mt-5 inline-flex w-fit rounded-full bg-[#416b59] px-3 py-1 text-xs font-bold text-white">−{CAMPAIGN.discountPercent} % Black Friday</p>}
               <h2 className="mt-6 text-4xl font-semibold tracking-[-.06em]">{item.title}<span className="text-[#c98686]">.</span></h2>
               <p className="mt-5 min-h-24 text-sm leading-7 text-[#53675d]">{item.summary}</p>
+              {active && <p className="mt-2 text-xs leading-5 text-[#53675d]">Popust se obračuna od dogovorjene cene storitev; brez izmišljenih izhodiščnih cen.</p>}
               <ul className="my-8 flex-1 space-y-4 border-t border-[#dce4d9] pt-7">
                 {item.features.map((feature) => <li key={feature} className="flex gap-3 text-sm text-[#425b4e]"><span className="text-[#416b59]" aria-hidden="true">✓</span>{feature}</li>)}
               </ul>
