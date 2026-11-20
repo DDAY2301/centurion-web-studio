@@ -7,49 +7,50 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Premium dark charcoal design system
+        // LUMELI design system
         brand: {
-          50: '#f8f9fa',
-          100: '#f1f3f4',
-          200: '#e8eaed',
-          300: '#dadfe1',
-          400: '#ccd0d4',
-          500: '#b1b4b8',
-          600: '#8a8d91',
-          700: '#5f6368',
-          800: '#202124',
+          // Warm ivory
+          50: '#F8F5EF',
+          100: '#F0ECE0',
+          200: '#E3D8C3',
+          300: '#D5C4A6',
+          400: '#C8AFB9',
+          500: '#B9A891',
+          600: '#A69474',
+          700: '#937F57',
+          800: '#293B34', // Deep Ink
           900: '#1a1a1a',
         },
-        // Accent colors - sophisticated teal
+        // Soft sage accent
         accent: {
-          50: '#e8f5f0',
-          100: '#d0ebd8',
-          200: '#a2d5b9',
-          300: '#74c098',
-          400: '#51cf66',
-          500: '#34d859',
-          600: '#28a745',
-          700: '#21863a',
-          800: '#1e7e34',
-          900: '#1a5e2e',
+          50: '#f0f8f0',
+          100: '#e1f0e1',
+          200: '#c3e0c3',
+          300: '#a5d0a5',
+          400: '#88c088',
+          500: '#416B59', // Forest Green
+          600: '#3a5e4f',
+          700: '#2e4b40',
+          800: '#223831',
+          900: '#172520',
         },
-        // Trust blue
-        trust: {
-          50: '#e6f0ff',
-          100: '#cce5ff',
-          200: '#99ccff',
-          300: '#66b2ff',
-          400: '#3399ff',
-          500: '#007bff',
-          600: '#0062cc',
-          700: '#004999',
-          800: '#003066',
-          900: '#001733',
+        // Dusty rose accent
+        rose: {
+          50: '#fef5f3',
+          100: '#fcece8',
+          200: '#f9d8d0',
+          300: '#f5c4b8',
+          400: '#f2b1a0',
+          500: '#E9B8B0', // Dusty Rose
+          600: '#d29d91',
+          700: '#b78579',
+          800: '#9c6d61',
+          900: '#815650',
         },
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-inter)', 'serif'],
+        serif: ['var(--font-playfair)', 'ui-serif', 'Georgia', 'serif'],
       },
       spacing: {
         '4xl': '3rem',

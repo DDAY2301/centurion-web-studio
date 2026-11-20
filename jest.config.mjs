@@ -1,9 +1,13 @@
-module.exports = {
+/** @type {import('jest').Config} */
+const config = {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/components', '<rootDir>/lib'],
   testMatch: ['**/*.test.tsx', '**/*.test.ts'],
   transform: {
-    '^.+\\.(t|j)sx?$': 'babel-jest'
+    '^.+\\.(t|j)sx?$': ['babel-jest', { presets: ['next/babel'] }]
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverageFrom: [
@@ -16,3 +20,5 @@ module.exports = {
   coverageReporters: ['text', 'lcov', 'html'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js']
 };
+
+export default config;

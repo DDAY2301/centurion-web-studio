@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Production optimizations
@@ -11,19 +13,20 @@ const nextConfig = {
 
   // Environment variables
   env: {
-    NEXT_PUBLIC_SITE_NAME: 'Centurion Web Studio',
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://centurion-web-studio.github.io',
+    NEXT_PUBLIC_SITE_NAME: 'Lumeli',
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://lumeli.eu',
   },
 
-  // Analytics (disabled by default)
-  experimental: {
-    appDir: true,
-  },
+  // Disable experimental for stability
+  // experimental: {
+  //   appDir: true,
+  // },
 
-  // Bundle analyzer
+  // Bundle analyzer (only when enabled)
   webpack(config) {
     if (process.env.ANALYZE === 'true') {
-      const BundleAnalyzerPlugin = require('@next/bundle-analyzer')({
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { BundleAnalyzerPlugin } = require('@next/bundle-analyzer')({
         analyzer: {
           open: true,
           mode: 'static',
@@ -35,4 +38,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
