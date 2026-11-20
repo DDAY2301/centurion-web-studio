@@ -1,3 +1,4 @@
+import InteractiveForm from '@/components/InteractiveForm';
 import Link from 'next/link';
 
 export const revalidate = 3600;
@@ -218,35 +219,7 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white rounded-2xl p-8 border border-brand-border">
-                <form
-                  action="/api/contact"
-                  method="POST"
-                  className="space-y-6"
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    const form = e.target as HTMLFormElement;
-                    const formData = new FormData(form);
-                    const data = Object.fromEntries(formData.entries());
-
-                    try {
-                      const response = await fetch('/api/contact', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
-                      });
-
-                      if (response.ok) {
-                        form.reset();
-                        alert('Thank you! We will get back to you soon.');
-                      } else {
-                        const error = await response.json();
-                        alert(`Error: ${error.error || 'Something went wrong'}`);
-                      }
-                    } catch (error) {
-                      alert('Please try again later.');
-                    }
-                  }}
-                >
+                <InteractiveForm locale="en" className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-brand-light mb-2">
@@ -347,7 +320,7 @@ export default function HomePage() {
                   <p className="text-xs text-brand-light text-center">
                     * Required fields
                   </p>
-                </form>
+                </InteractiveForm>
               </div>
             </div>
           </div>
