@@ -5,21 +5,19 @@ export default function BlackFridayBanner() {
   if (!isCampaignActive()) return null;
 
   return (
-    <section aria-label="Black Friday ponudba" className="bg-[#293b34] px-5 py-14 text-[#f8f5ef] sm:px-8">
-      <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_auto]">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#dce9df]">Lumeli · Black Friday 2026</p>
-          <h2 className="mt-4 max-w-4xl text-3xl font-semibold leading-[1.13] tracking-[-0.06em] sm:text-5xl">
-            Vaša nova spletna stran. <span className="text-[#e9b8b0]">30 % ugodneje.</span>
-          </h2>
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-[#dce9df]">
-            Popust velja na vse pakete in storitve Lumeli do {CAMPAIGN.endLabel}. Ob povpraševanju navedite kodo <strong>{CAMPAIGN.code}</strong>.
+    <section aria-label="Black Friday ponudba" className="bg-[#20362d] px-6 py-3.5 text-[#f6f3ec] sm:px-10">
+      <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-8 gap-y-3">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <span className="shrink-0 border border-[#8da497] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.2em] text-[#e8b7a2]">
+            Black Friday · −{CAMPAIGN.discountPercent} %
+          </span>
+          <p className="text-xs leading-6 text-[#d9e3d9] sm:text-sm">
+            Za spletne projekte do {CAMPAIGN.endLabel}. Koda: <strong className="font-semibold text-white">{CAMPAIGN.code}</strong>
           </p>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <Link href="/kuponi" className="rounded-full bg-[#e9b8b0] px-7 py-4 text-sm font-bold text-[#293b34] hover:bg-[#f1cac4]">Prevzemi kupon ↗</Link>
-          <Link href="/paketi" className="rounded-full border border-[#8eab99] px-7 py-4 text-sm font-semibold text-[#f8f5ef] hover:bg-[#3d5949]">Poglej pakete</Link>
-        </div>
+        <Link href="/kuponi" className="shrink-0 text-xs font-semibold text-white underline decoration-[#c58f78] underline-offset-4 hover:text-[#e8b7a2] sm:text-sm">
+          Oglejte si kupone ↗
+        </Link>
       </div>
     </section>
   );
