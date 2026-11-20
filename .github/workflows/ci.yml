@@ -14,11 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Resolve and install dependencies
-        # Temporarily uses npm install because the legacy repo has no lockfile.
-        # After a verified package-lock.json is committed, replace with npm ci
-        # and turn npm caching back on.
-        run: npm install --no-fund
+          cache: npm
+      - name: Install reproducible dependencies
+        run: npm ci --no-fund
       - name: TypeScript
         run: npm run typecheck
       - name: ESLint
