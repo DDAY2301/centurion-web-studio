@@ -1,342 +1,75 @@
-import InteractiveForm from '@/components/InteractiveForm';
 import Link from 'next/link';
+import ProjectCard from '@/components/ProjectCard';
+import { portfolioProjects } from '@/lib/portfolio-projects';
 
-export const revalidate = 3600;
+const serviceHighlights = [
+  { number: '01', title: 'Spletne strani', text: 'Estetika in struktura, ki obiskovalca prepričata brez nepotrebnega hrupa.' },
+  { number: '02', title: 'Digitalne izkušnje', text: 'Uporabne, odzivne rešitve za podjetja in projekte vseh velikosti.' },
+  { number: '03', title: 'Razvoj in podpora', text: 'Čista izvedba, skrb za podrobnosti in premišljeno nadaljnje izboljševanje.' },
+];
 
 export default function HomePage() {
   return (
-    <>
-      {/* Skip to content link */}
-      <a href="#main" className="sr-only focus:not-sr-only skip-link">
-        Preskoči na vsebino
-      </a>
-
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-brand-border">
-        <div className="container mx-auto flex items-center justify-between py-4 px-6">
-          <Link href="/" className="flex items-center gap-3" prefetch={false}>
-            <span className="text-2xl font-bold text-brand-dark">lumeli.</span>
-          </Link>
-
-          <nav aria-label="Primarna navigacija">
-            <ul className="flex gap-6">
-              {[
-                { href: '/#services', label: 'Services' },
-                { href: '/#portfolio', label: 'Work' },
-                { href: '/#about', label: 'About' },
-                { href: '/#contact', label: 'Contact' },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm font-medium text-brand-light hover:text-brand-dark transition-colors"
-                    prefetch={false}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-brand-light">|</span>
-            <Link href="/sl" className="text-sm font-medium text-brand-dark hover:text-accent-primary transition-colors">SI</Link>
-            <Link href="/en" className="text-sm font-medium text-accent-primary transition-colors">EN</Link>
+    <main id="main">
+      <section className="relative overflow-hidden bg-[#f8f5ef]">
+        <div className="pointer-events-none absolute -right-24 top-4 h-96 w-96 rounded-full bg-[#dce9df] blur-3xl" aria-hidden="true" />
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-24 pt-20 sm:px-8 sm:pt-28 lg:grid-cols-[1.5fr_0.8fr] lg:items-end lg:pb-32">
+          <div className="relative z-10">
+            <p className="mb-8 inline-flex rounded-full border border-[#bfd0c2] bg-white/60 px-5 py-2 text-xs font-semibold uppercase tracking-[.2em] text-[#416b59]">Lumeli · Creative digital studio</p>
+            <h1 className="max-w-5xl text-5xl font-semibold leading-[1.08] tracking-[-.075em] text-[#293b34] sm:text-7xl xl:text-[6.5rem]">
+              Lepe spletne strani.<br /><span className="text-[#668979]">Pametne</span> rešitve<span className="text-[#ca888c]">.</span>
+            </h1>
+            <p className="mt-9 max-w-2xl text-lg leading-9 text-[#53675d] sm:text-xl">Oblikujemo digitalne izkušnje, ki so prijetne za uporabo, jasne v sporočilu in narejene za ljudi.</p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="/portfolio" className="rounded-full bg-[#416b59] px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#304f42]">Oglej si naše delo ↗</Link>
+              <Link href="/storitve" className="rounded-full border border-[#a8bdb0] px-8 py-4 text-sm font-semibold text-[#293b34] transition-colors hover:bg-[#dce9df]">Naše storitve</Link>
+            </div>
+          </div>
+          <div className="relative hidden min-h-[340px] overflow-hidden rounded-[3rem] border border-[#d7e0d4] bg-[#e2eade] p-10 lg:flex lg:flex-col lg:justify-between">
+            <div className="flex justify-between text-xs font-semibold uppercase tracking-[.19em] text-[#587463]"><span>Design with care</span><span>↗</span></div>
+            <div><p className="text-6xl font-semibold tracking-[-.08em] text-[#416b59]">lovely<br />by design<span className="text-[#c98686]">.</span></p><p className="mt-5 max-w-[18rem] text-sm leading-7 text-[#53675d]">Lovely design. Clever technology.</p></div>
+            <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full border-[42px] border-white/40" aria-hidden="true" />
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* Hero Section */}
-      <main id="main" className="flex-1">
-        <section className="relative min-h-screen flex items-center justify-center bg-white">
-          <div className="container mx-auto px-6 text-center">
-            <div className="mb-12">
-              <h1 className="text-6xl md:text-7xl font-bold text-brand-dark mb-6 leading-tight">
-                <span className="block mb-2">Beautiful digital</span>
-                <span>experiences.</span>
-              </h1>
-              <p className="text-lg text-brand-light max-w-2xl mx-auto mb-10">
-                Lovely design. Clever technology. Professional websites and smart digital solutions, made with care.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent-primary px-8 py-4 text-base font-semibold text-white hover:bg-accent-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
-                prefetch={false}
-              >
-                Start a project
-              </Link>
-              <Link
-                href="/#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-border bg-white px-8 py-4 text-base font-medium text-brand-dark hover:bg-brand-subtle transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
-                prefetch={false}
-              >
-                Explore our work
-              </Link>
-            </div>
+      <section className="bg-white py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-7">
+            <div><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#416b59]">Izbrano delo</p><h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-.06em] sm:text-6xl">Najprej naj spregovorijo projekti.</h2></div>
+            <Link href="/portfolio" className="text-sm font-semibold text-[#416b59] underline-offset-4 hover:underline">Vse reference ↗</Link>
           </div>
-        </section>
-
-        {/* Services Section */}
-        <section id="services" className="py-20 bg-brand-subtle">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-brand-dark mb-4">Our services</h2>
-              <p className="text-lg text-brand-light max-w-2xl mx-auto">
-                Complete solutions for your digital presence - from strategy to maintenance
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: 'Web Design',
-                  description: 'Beautiful, user-focused designs that reflect your brand identity.',
-                },
-                {
-                  title: 'Web Development',
-                  description: 'Clean, performant code built with modern technologies.',
-                },
-                {
-                  title: 'Landing Pages',
-                  description: 'Conversion-focused pages that drive results.',
-                },
-                {
-                  title: 'Website Redesign',
-                  description: 'Transform your existing site into a modern experience.',
-                },
-                {
-                  title: 'SEO & Performance',
-                  description: 'Optimize for search engines and lightning-fast loading.',
-                },
-                {
-                  title: 'Maintenance',
-                  description: 'Ongoing care to keep your site secure and updated.',
-                },
-              ].map((service) => (
-                <div
-                  key={service.title}
-                  className="bg-white rounded-xl p-6 border border-brand-border hover:border-accent-primary/30 transition-all"
-                >
-                  <h3 className="text-xl font-semibold text-brand-dark mb-3">{service.title}</h3>
-                  <p className="text-brand-light text-sm">{service.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Portfolio Section */}
-        <section id="portfolio" className="py-20">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-brand-dark mb-4">Our work</h2>
-              <p className="text-lg text-brand-light max-w-2xl mx-auto">
-                Preglejte naše uspešne realizacije za različne panogske sektorje
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* BlogLab Project */}
-              <article className="group bg-white rounded-2xl overflow-hidden border border-brand-border hover:border-accent-primary/30 transition-all">
-                <div className="aspect-video relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-brand-dark to-brand-darker flex items-center justify-center">
-                    <div className="text-center p-6">
-                      <div className="text-xs text-brand-light mb-2">Portfolio</div>
-                      <h3 className="text-2xl font-bold text-white mb-3">BlogLab.eu</h3>
-                      <p className="text-brand-light text-sm max-w-xs">
-                        React aplikacija z Vite za peneracijo in objavljanje člankov.
-                        Vključeno AI pomoč za ureditev vsebine.
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        <span className="px-2 py-1 text-xs rounded bg-accent-primary/10 text-accent-primary">React</span>
-                        <span className="px-2 py-1 text-xs rounded bg-accent-primary/10 text-accent-primary">Vite</span>
-                        <span className="px-2 py-1 text-xs rounded bg-accent-primary/10 text-accent-primary">AI integracija</span>
-                      </div>
-                      <Link
-                        href="https://bloglab.eu"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-primary/80 font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-                      >
-                        Poglej projekt
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6l4 4m0 0l-4 4m4-4H6"></path>
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              {/* Black Raven Project */}
-              <article className="group bg-white rounded-2xl overflow-hidden border border-brand-border hover:border-accent-primary/30 transition-all">
-                <div className="aspect-video relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-brand-dark to-brand-darker flex items-center justify-center">
-                    <div className="text-center p-6">
-                      <div className="text-xs text-brand-light mb-2">Portfolio</div>
-                      <h3 className="text-2xl font-bold text-white mb-3">Black Raven Solutions</h3>
-                      <p className="text-brand-light text-sm max-w-xs">
-                        Bilingual prezentacijska stran za wilderness akademijo.
-                        S pomocjo Node.js backenda za kontakt oblike.
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        <span className="px-2 py-1 text-xs rounded bg-accent-primary/10 text-accent-primary">HTML/CSS/JS</span>
-                        <span className="px-2 py-1 text-xs rounded bg-accent-primary/10 text-accent-primary">Node.js</span>
-                        <span className="px-2 py-1 text-xs rounded bg-accent-primary/10 text-accent-primary">Bilingual</span>
-                      </div>
-                      <Link
-                        href="https://blackraven.solutions"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-primary/80 font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-                      >
-                        Poglej projekt
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6l4 4m0 0l-4 4m4-4H6"></path>
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="py-20 bg-brand-subtle">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-brand-dark mb-4">Get in touch</h2>
-                <p className="text-lg text-brand-light">
-                  Ready to start your project? Let&apos;s talk.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-2xl p-8 border border-brand-border">
-                <InteractiveForm locale="en" className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-brand-light mb-2">
-                        Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        className="w-full rounded-lg bg-brand-subtle border border-brand-border px-4 py-3 text-brand-dark placeholder:text-brand-light focus:border-accent-primary focus:ring-0 transition-colors"
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-brand-light mb-2">
-                        Company *
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        required
-                        className="w-full rounded-lg bg-brand-subtle border border-brand-border px-4 py-3 text-brand-dark placeholder:text-brand-light focus:border-accent-primary focus:ring-0 transition-colors"
-                        placeholder="Company name"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-brand-light mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full rounded-lg bg-brand-subtle border border-brand-border px-4 py-3 text-brand-dark placeholder:text-brand-light focus:border-accent-primary focus:ring-0 transition-colors"
-                      placeholder="email@company.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-brand-light mb-2">
-                      Interested in *
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      required
-                      className="w-full rounded-lg bg-brand-subtle border border-brand-border px-4 py-3 text-brand-dark focus:border-accent-primary focus:ring-0 transition-colors"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="web-design">Web Design</option>
-                      <option value="web-development">Web Development</option>
-                      <option value="landing-pages">Landing Pages</option>
-                      <option value="redesign">Website Redesign</option>
-                      <option value="seo">SEO & Performance</option>
-                      <option value="maintenance">Maintenance</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-brand-light mb-2">
-                      Project description
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      className="w-full rounded-lg bg-brand-subtle border border-brand-border px-4 py-3 text-brand-dark placeholder:text-brand-light focus:border-accent-primary focus:ring-0 transition-colors resize-y"
-                      placeholder="Tell us about your project..."
-                    />
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="consent"
-                      name="consent"
-                      required
-                      className="mt-1 rounded border-brand-border bg-white"
-                    />
-                    <label htmlFor="consent" className="text-xs text-brand-light">
-                      I agree to the <Link href="/privacy-policy" className="text-accent-primary hover:text-accent-primary/80">Privacy Policy</Link>
-                    </label>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full rounded-full bg-accent-primary px-6 py-3 text-base font-semibold text-white hover:bg-accent-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
-                  >
-                    Send message
-                  </button>
-
-                  <p className="text-xs text-brand-light text-center">
-                    * Required fields
-                  </p>
-                </InteractiveForm>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-brand-dark border-t border-brand-border py-12">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <p className="text-xs text-brand-light">
-              &copy; {new Date().getFullYear()} lumeli. Vsi pravice pridržani.
-            </p>
+          <div className="grid gap-7 md:grid-cols-2">
+            {portfolioProjects.map((project, index) => <ProjectCard key={project.slug} project={project} number={index + 1} />)}
           </div>
         </div>
-      </footer>
-    </>
+      </section>
+
+      <section className="bg-[#e8eee5] py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#416b59]">Kaj počnemo</p>
+          <div className="mt-5 flex flex-wrap items-end justify-between gap-7">
+            <h2 className="max-w-2xl text-4xl font-semibold tracking-[-.06em] sm:text-6xl">Dober dizajn je šele začetek.</h2>
+            <Link href="/storitve" className="text-sm font-semibold text-[#416b59] underline-offset-4 hover:underline">Razišči storitve ↗</Link>
+          </div>
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            {serviceHighlights.map((service) => (
+              <div key={service.number} className="rounded-[1.7rem] border border-[#d3ddd1] bg-white/85 p-8">
+                <span className="text-xs font-bold tracking-[.19em] text-[#628272]">{service.number}</span>
+                <h3 className="mt-12 text-2xl font-semibold tracking-tight">{service.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-[#53675d]">{service.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#293b34] px-5 py-24 text-[#f8f5ef] sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-10">
+          <div><p className="text-xs font-semibold uppercase tracking-[.18em] text-[#b4cbb9]">Naslednji korak</p><h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-.06em] sm:text-6xl">Vaša ideja si zasluži odlično spletno stran.</h2></div>
+          <Link href="/kontakt" className="inline-flex rounded-full bg-[#e9b8b0] px-9 py-4 text-sm font-semibold text-[#293b34] hover:bg-[#f1cac4]">Pogovorimo se ↗</Link>
+        </div>
+      </section>
+    </main>
   );
 }
