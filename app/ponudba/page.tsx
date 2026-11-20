@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageIntro from '@/components/PageIntro';
+import { CAMPAIGN, isCampaignActive } from '@/lib/campaign';
+
+export const revalidate = 300;
 
 export const metadata: Metadata = { title: 'Ponudba', description: 'Kako poteka priprava ponudbe za spletno stran ali digitalni projekt pri Lumeli.' };
 
@@ -12,9 +15,11 @@ const steps = [
 ];
 
 export default function PonudbaPage() {
+  const active = isCampaignActive();
   return (
     <main id="main">
       <PageIntro eyebrow="Kako sodelujemo" title="Dober projekt se začne z dobrim pogovorom." description="Brez zapletenega procesa in nejasnih obljub. Najprej spoznamo vaš projekt, nato skupaj določimo pravo rešitev." />
+      {active && <section className="bg-[#e7eee5] px-5 py-9 sm:px-8"><div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5"><div><p className="text-xs font-bold uppercase tracking-[.15em] text-[#416b59]">Black Friday 2026</p><h2 className="mt-2 text-2xl font-semibold tracking-tight">−30 % na storitve in pakete Lumeli</h2><p className="mt-3 text-sm text-[#53675d]">Do {CAMPAIGN.endLabel}. Koda: {CAMPAIGN.code}. Popust se obračuna v individualni ponudbi.</p></div><Link href="/kuponi" className="rounded-full bg-[#416b59] px-6 py-3 text-sm font-semibold text-white">Prevzemi kupon ↗</Link></div></section>}
       <section className="bg-white px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {steps.map((step) => (
