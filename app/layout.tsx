@@ -3,7 +3,7 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import './globals.css';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lumeli.eu';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lumeli.net';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

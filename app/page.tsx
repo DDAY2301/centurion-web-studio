@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import ProjectCard from '@/components/ProjectCard';
+import BlackFridayBanner from '@/components/BlackFridayBanner';
 import { portfolioProjects } from '@/lib/portfolio-projects';
+
+export const revalidate = 300;
 
 const serviceHighlights = [
   { number: '01', title: 'Spletne strani', text: 'Estetika in struktura, ki obiskovalca prepričata brez nepotrebnega hrupa.' },
@@ -11,6 +14,7 @@ const serviceHighlights = [
 export default function HomePage() {
   return (
     <main id="main">
+      <BlackFridayBanner />
       <section className="relative overflow-hidden bg-[#f8f5ef]">
         <div className="pointer-events-none absolute -right-24 top-4 h-96 w-96 rounded-full bg-[#dce9df] blur-3xl" aria-hidden="true" />
         <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-24 pt-20 sm:px-8 sm:pt-28 lg:grid-cols-[1.5fr_0.8fr] lg:items-end lg:pb-32">
