@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F8F5EF"/>
+  <path d="M0 0L1200 0L1200 630L0 630Z" fill="#DCE9DF" fill-opacity="0.3"/>
+  <text x="80" y="120" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#293B34">
+    Vaša ideja. Naša izvedba.
+  </text>
+  <text x="80" y="180" font-family="Inter, sans-serif" font-size="24" fill="#416B59">
+    Imate posebno zamisel? Skupaj poiščimo digitalno rešitev, ki ustreza vašemu podjetju.
+  </text>
+  <rect x="80" y="240" width="200" height="60" rx="30" fill="#416B59"/>
+  <text x="180" y="280" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#F8F5EF">
+    BLACK FRIDAY −30 %
+  </text>
+  <text x="80" y="340" font-family="Inter, sans-serif" font-size="32" font-weight="600" fill="#293B34">
+    Koda: BLACKFRIDAY30
+  </text>
+  <text x="80" y="550" font-family="Inter, sans-serif" font-size="24" fill="#416B59">
+    Pogovorimo se o ideji
+  </text>
+  <text x="80" y="600" font-family="Inter, sans-serif" font-size="16" fill="#416B59">
+    lumeli. • Centurion d.o.o.
+  </text>
+</svg>

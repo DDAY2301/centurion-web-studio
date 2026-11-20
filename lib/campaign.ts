@@ -4,13 +4,14 @@
  */
 
 export const CAMPAIGN = {
-  label: 'Black Friday Sale',
+  label: 'LUMELI BLACK FRIDAY',
   discount: 30,
   code: 'BLACKFRIDAY30',
-  validity: 'Akcija velja v času Black Friday ponudbe.',
-  startDate: '2026-11-28',
-  endDate: '2026-12-01',
+  validity: 'Akcija velja do 30.11.2026',
+  startDate: '2026-11-20',
+  endDate: '2026-11-30',
   message: 'Popust se obračuna v končni ponudbi.',
+  domain: 'https://lumeli.net',
 } as const;
 
 export const COUPON_VARIANTS = [
