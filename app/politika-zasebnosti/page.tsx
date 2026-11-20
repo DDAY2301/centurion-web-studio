@@ -180,7 +180,7 @@ export default function PolitikaZasebnostiPage() {
                   </Link>
                 </section>
               </div>
-            </div>
+            </article>
           </div>
         </section>
       </main>
