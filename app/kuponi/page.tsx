@@ -23,11 +23,11 @@ export default function KuponiPage() {
           <nav aria-label="Primarna navigacija">
             <ul className="flex gap-6">
               {[
-                { href: '/#services', label: 'Services' },
-                { href: '/#portfolio', label: 'Work' },
-                { href: '/#about', label: 'About' },
+                { href: '/storitve', label: 'Storitve' },
+                { href: '/portfolio', label: 'Reference' },
+                { href: '/o-nas', label: 'O nas' },
                 { href: '/paketi', label: 'Paketi' },
-                { href: '/kontakt', label: 'Contact' },
+                { href: '/kontakt', label: 'Kontakt' },
               ].map((item) => (
                 <li key={item.href}>
                   <Link
@@ -53,7 +53,7 @@ export default function KuponiPage() {
         <section className="py-20 bg-brand-subtle">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-brand-dark mb-4">Popustne kupone</h2>
+              <h2 className="text-4xl font-bold text-brand-dark mb-4">Popustni kuponi</h2>
               <p className="text-lg text-brand-light max-w-2xl mx-auto">
                Izberite kupon, ki ustreza vašemu projektu. Koda je <strong>{CAMPAIGN.code}</strong>.
               </p>
@@ -74,8 +74,8 @@ export default function KuponiPage() {
                     <span>Izberite ustrezen kupon in kopirajte kodo</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-full bg-accent-primary text-xs font-semibold text-white flex-shrink-0">2</li>
-                    <span>Napolnite kontakt obliko na <Link href="/kontakt" className="text-accent-primary hover:underline">Kontakt</Link> strani</span>
+                    <span className="w-6 h-6 rounded-full bg-accent-primary text-xs font-semibold text-white flex-shrink-0">2</span>
+                    <span>Obiščite <Link href="/kontakt" className="text-accent-primary hover:underline">Kontakt</Link> stran</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-accent-primary text-xs font-semibold text-white flex-shrink-0">3</span>
@@ -83,7 +83,7 @@ export default function KuponiPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-accent-primary text-xs font-semibold text-white flex-shrink-0">4</span>
-                    <span>Prejmite individualno ponudbo z veljavenim popustom</span>
+                    <span>Prejmite individualno ponudbo s popustom v skladu s pogoji akcije</span>
                   </li>
                 </ol>
               </div>
