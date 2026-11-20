@@ -1,15 +1,7 @@
 /// <reference types="next" />
-/// <reference types="next/image-types" />
+/// <reference types="next/image-types/global" />
+import "./.next/dev/types/routes.d.ts";
+import "./.next/dev/types/root-params.d.ts";
 
-declare namespace NodeJS {
-  interface ProcessEnv {
-    NEXT_PUBLIC_SITE_NAME: string;
-    NEXT_PUBLIC_SITE_URL: string;
-    NEXT_PUBLIC_COUPON_API_URL: string;
-    CONTACT_API_URL: string;
-    SMTP_HOST: string;
-    SMTP_PORT: string;
-    SMTP_USER: string;
-    SMTP_PASS: string;
-  }
-}
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.

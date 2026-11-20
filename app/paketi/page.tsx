@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CAMPAIGN } from '@/lib/campaign';
 
 export const revalidate = 3600;
 
@@ -52,7 +53,7 @@ const packages = [
       'Analytics integracija (Google, Matomo)',
       'Plačilni sistema integracija',
       'CRM povezava',
-      'Redelno ažuriranje (3 meseca)',
+      'Redelno ažuriranje (3 meseci)',
       'Polna podpora',
       'Možnost ponovnega načrtovanja'
     ],
@@ -70,28 +71,25 @@ export default function PaketiPage() {
       </a>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60 border-b border-brand-border">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-brand-border">
         <div className="container mx-auto flex items-center justify-between py-4 px-6">
           <Link href="/" className="flex items-center gap-3" prefetch={false}>
-            <span className="text-2xl font-bold text-white">Centurion</span>
-            <span className="text-sm text-brand-light -rotate-6 scale-105 transform opacity-75">
-              Web Studio
-            </span>
+            <span className="text-2xl font-bold text-brand-dark">lumeli.</span>
           </Link>
 
           <nav aria-label="Primarna navigacija">
             <ul className="flex gap-6">
               {[
-                { href: '/#services', label: 'Storitve' },
-                { href: '/#portfolio', label: 'Projekti' },
-                { href: '/#about', label: 'O nas' },
-                { href: '/#packages', label: 'Paketi' },
-                { href: '/#contact', label: 'Kontakt' },
+                { href: '/#services', label: 'Services' },
+                { href: '/#portfolio', label: 'Work' },
+                { href: '/#about', label: 'About' },
+                { href: '/paketi', label: 'Paketi' },
+                { href: '/kontakt', label: 'Contact' },
               ].map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm font-medium text-brand-light hover:text-white transition-colors"
+                    className="text-sm font-medium text-brand-light hover:text-brand-dark transition-colors"
                     prefetch={false}
                   >
                     {item.label}
@@ -105,12 +103,21 @@ export default function PaketiPage() {
 
       {/* Main Content */}
       <main id="main" className="flex-1">
-        <section className="py-20 bg-brand-dark">
+        <section className="py-20 bg-brand-subtle">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h1 className="text-5xl font-bold text-white mb-6">Paketi</h1>
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-medium text-brand-light bg-brand-card rounded-full border border-brand-border">
+                <span className="w-2 h-2 rounded-full bg-accent-primary"></span>
+                Black Friday -30%
+              </div>
+
+              <h1 className="text-5xl font-bold text-brand-dark mb-4">Naši paketi</h1>
               <p className="text-xl text-brand-light max-w-3xl mx-auto">
-                Progresivne ponudbe prilagojene vašim potrebama in prilivom
+                Progresivne ponudbe prilagojene vašim potrebama. <strong>-30% popust</strong> v času Black Friday!
+              </p>
+
+              <p className="text-sm text-brand-light mt-3">
+                Koda: <code className="bg-brand-card px-2 py-1 rounded text-accent-primary font-mono">{CAMPAIGN.code}</code>
               </p>
             </div>
 
@@ -118,19 +125,18 @@ export default function PaketiPage() {
               {packages.map((pkg) => (
                 <article
                   key={pkg.name}
-                  className="bg-brand-card rounded-2xl p-8 border border-brand-border hover:border-accent-primary/30 transition-all flex flex-col h-full"
+                  className="bg-white rounded-2xl p-8 border border-brand-border hover:border-accent-primary/30 transition-all flex flex-col h-full"
                 >
                   <div className="mb-6">
                     <span className="inline-flex items-center px-3 py-1 text-xs font-medium text-brand-light bg-brand-card border border-brand-border rounded-full mb-3">
-                      {pkg.name}
+                      {pkg.name} • -30%
                     </span>
-                    <h2 className="text-2xl font-bold text-white mb-2">{pkg.title}</h2>
-                    <p className="text-accent-primary font-medium mb-2">{pkg.tagline}</p>
+                    <h2 className="text-2xl font-bold text-brand-dark mb-2">{pkg.title}</h2>
                     <p className="text-brand-light text-sm">{pkg.description}</p>
                   </div>
 
                   <div className="flex-1 mb-6">
-                    <h3 className="text-lg font-semibold text-white mb-3">Kaj vključuje paket?</h3>
+                    <h3 className="text-lg font-semibold text-brand-dark mb-3">Kaj vključuje paket?</h3>
                     <ul className="space-y-2">
                       {pkg.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-3">
@@ -150,16 +156,20 @@ export default function PaketiPage() {
 
                   <div>
                     <div className="text-sm font-medium text-brand-light mb-2">Cena</div>
-                    <div className="text-xl font-bold text-accent-primary mb-4">{pkg.price}</div>
+                    <div className="text-xl font-bold text-accent-primary mb-2">{pkg.price}</div>
+                    <div className="text-sm text-brand-light mb-3">
+                      <span className="line-through text-brand-light mr-2">Izvirna cena</span>
+                      <span className="text-accent-primary font-semibold">-30%</span>
+                    </div>
                     <p className="text-xs text-brand-light mb-3">
-                      Ponudba je orientacijska. Končna cena je odvisna od specifikacije vašega projekta.
+                      Popust se obračuna v končni ponudbi. Koda: <code className="bg-brand-card px-1 py-0.5 rounded text-accent-primary text-xs">{CAMPAIGN.code}</code>
                     </p>
                     <Link
                       href="/ponudba"
                       className="block text-center inline-flex items-center justify-center rounded-full bg-accent-primary px-5 py-2 text-sm font-semibold text-white hover:bg-accent-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
                       prefetch={false}
                     >
-                      Zahtevaj ponudbo
+                      Zahtevaj ponudbo z kuponom
                     </Link>
                   </div>
                 </article>
@@ -168,14 +178,14 @@ export default function PaketiPage() {
 
             {/* Call to action */}
             <div className="mt-16 text-center">
-              <div className="bg-brand-card rounded-2xl p-8 border border-brand-border max-w-2xl mx-auto">
-                <h3 className="text-2xl font-bold text-white mb-4">Potrebujete pomoč za izbo?</h3>
+              <div className="bg-white rounded-2xl p-8 border border-brand-border max-w-2xl mx-auto">
+                <h3 className="text-2xl font-bold text-brand-dark mb-4">Potrebujete pomoč za izbo?</h3>
                 <p className="text-brand-light mb-6">
                   Ne ste prepričani/na? Pišite nam in bomo vesel/a pomagali izbrati pravi paket za vaše potrebe.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
-                    href="/#contact"
+                    href="/kontakt"
                     className="inline-flex items-center justify-center rounded-full bg-accent-primary px-6 py-3 text-base font-semibold text-white hover:bg-accent-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
                     prefetch={false}
                   >
@@ -186,7 +196,7 @@ export default function PaketiPage() {
                     className="inline-flex items-center justify-center rounded-full border border-accent-primary px-6 py-3 text-base font-semibold text-accent-primary hover:bg-accent-primary/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
                     prefetch={false}
                   >
-                    Začnite svoj projekt
+                    Poglej ponudbo
                   </Link>
                 </div>
               </div>
@@ -196,11 +206,11 @@ export default function PaketiPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black border-t border-brand-border py-12">
+      <footer className="bg-brand-dark border-t border-brand-border py-12">
         <div className="container mx-auto px-6">
           <div className="text-center">
             <p className="text-xs text-brand-light">
-              &copy; {new Date().getFullYear()} Centurion Web Studio. Vsi pravice pridržani.
+              &copy; {new Date().getFullYear()} lumeli. Vsi pravice pridržani.
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
-import InteractiveForm from '@/components/InteractiveForm';
 import Link from 'next/link';
+import BlackFridayBanner from '@/components/BlackFridayBanner';
 
 export const revalidate = 3600;
 
@@ -11,75 +11,11 @@ export default function HomePage() {
         Preskoči na vsebino
       </a>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-brand-border">
-        <div className="container mx-auto flex items-center justify-between py-4 px-6">
-          <Link href="/" className="flex items-center gap-3" prefetch={false}>
-            <span className="text-2xl font-bold text-brand-dark">lumeli.</span>
-          </Link>
+      {/* Black Friday Banner */}
+      <BlackFridayBanner />
 
-          <nav aria-label="Primarna navigacija">
-            <ul className="flex gap-6">
-              {[
-                { href: '/#services', label: 'Services' },
-                { href: '/#portfolio', label: 'Work' },
-                { href: '/#about', label: 'About' },
-                { href: '/#contact', label: 'Contact' },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm font-medium text-brand-light hover:text-brand-dark transition-colors"
-                    prefetch={false}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-brand-light">|</span>
-            <Link href="/sl" className="text-sm font-medium text-brand-dark hover:text-accent-primary transition-colors">SI</Link>
-            <Link href="/en" className="text-sm font-medium text-accent-primary transition-colors">EN</Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
+      {/* Main Content */}
       <main id="main" className="flex-1">
-        <section className="relative min-h-screen flex items-center justify-center bg-white">
-          <div className="container mx-auto px-6 text-center">
-            <div className="mb-12">
-              <h1 className="text-6xl md:text-7xl font-bold text-brand-dark mb-6 leading-tight">
-                <span className="block mb-2">Beautiful digital</span>
-                <span>experiences.</span>
-              </h1>
-              <p className="text-lg text-brand-light max-w-2xl mx-auto mb-10">
-                Lovely design. Clever technology. Professional websites and smart digital solutions, made with care.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent-primary px-8 py-4 text-base font-semibold text-white hover:bg-accent-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
-                prefetch={false}
-              >
-                Start a project
-              </Link>
-              <Link
-                href="/#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-border bg-white px-8 py-4 text-base font-medium text-brand-dark hover:bg-brand-subtle transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
-                prefetch={false}
-              >
-                Explore our work
-              </Link>
-            </div>
-          </div>
-        </section>
-
         {/* Services Section */}
         <section id="services" className="py-20 bg-brand-subtle">
           <div className="container mx-auto px-6">
@@ -214,12 +150,40 @@ export default function HomePage() {
               <div className="text-center mb-12">
                 <h2 className="text-4xl font-bold text-brand-dark mb-4">Get in touch</h2>
                 <p className="text-lg text-brand-light">
-                  Ready to start your project? Let&apos;s talk.
+                  Ready to start your project with a <strong>-30% Black Friday discount</strong>?
                 </p>
               </div>
 
               <div className="bg-white rounded-2xl p-8 border border-brand-border">
-                <InteractiveForm locale="en" className="space-y-6">
+                <form
+                  action="/api/contact"
+                  method="POST"
+                  className="space-y-6"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.target as HTMLFormElement;
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+
+                    try {
+                      const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                      });
+
+                      if (response.ok) {
+                        form.reset();
+                        alert('Thank you! Please mention code BLACKFRIDAY30 for your discount.');
+                      } else {
+                        const error = await response.json();
+                        alert(`Error: ${error.error || 'Something went wrong'}`);
+                      }
+                    } catch (error) {
+                      alert('Please try again later.');
+                    }
+                  }}
+                >
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-brand-light mb-2">
@@ -284,6 +248,19 @@ export default function HomePage() {
                   </div>
 
                   <div>
+                    <label htmlFor="coupon" className="block text-sm font-medium text-brand-light mb-2">
+                      Coupon code (optional)
+                    </label>
+                    <input
+                      type="text"
+                      id="coupon"
+                      name="couponCode"
+                      className="w-full rounded-lg bg-brand-subtle border border-brand-border px-4 py-3 text-brand-dark placeholder:text-brand-light focus:border-accent-primary focus:ring-0 transition-colors"
+                      placeholder="BLACKFRIDAY30"
+                    />
+                  </div>
+
+                  <div>
                     <label htmlFor="message" className="block text-sm font-medium text-brand-light mb-2">
                       Project description
                     </label>
@@ -318,9 +295,9 @@ export default function HomePage() {
                   </button>
 
                   <p className="text-xs text-brand-light text-center">
-                    * Required fields
+                    * Required fields. Mention code BLACKFRIDAY30 for -30% discount.
                   </p>
-                </InteractiveForm>
+                </form>
               </div>
             </div>
           </div>
