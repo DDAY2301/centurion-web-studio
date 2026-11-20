@@ -115,7 +115,7 @@ export default function PaketiPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {packages.map((pkg, index) => (
+              {packages.map((pkg) => (
                 <article
                   key={pkg.name}
                   className="bg-brand-card rounded-2xl p-8 border border-brand-border hover:border-accent-primary/30 transition-all flex flex-col h-full"
