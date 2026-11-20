@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: true
+          fetch-depth: 0
       - name: Install Python
         uses: actions/setup-python@v5
         with:
@@ -49,5 +50,7 @@ jobs:
             echo "Coupon downloads already match their SVG sources"
           else
             git commit -m "chore(coupons): publish PNG/PDF downloads [skip ci]"
+            git fetch origin "${BRANCH}"
+            git rebase "origin/${BRANCH}"
             git push origin "HEAD:${BRANCH}"
           fi
