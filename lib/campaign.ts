@@ -37,7 +37,7 @@ export const COUPON_VARIANTS = [
     id: 'custom-project',
     title: 'Moj projekt',
     description: 'Black Friday: -30% na poljubno digitalno razrešitev.',
-    benefits: ['Individualno prilagodljivo', 'Popolna podpora', 'Trajna vzdrževanje'},
+    benefits: ['Individualno prilagodljivo', 'Popolna podpora', 'Trajno vzdrževanje'],
   },
 ] as const;
 
