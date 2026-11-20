@@ -214,7 +214,7 @@ export default function HomePage() {
               <div className="text-center mb-12">
                 <h2 className="text-4xl font-bold text-brand-dark mb-4">Get in touch</h2>
                 <p className="text-lg text-brand-light">
-                  Ready to start your project? Let's talk.
+                  Ready to start your project? Let&apos;s talk.
                 </p>
               </div>
 
