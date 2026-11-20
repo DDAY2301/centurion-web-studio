@@ -1,82 +1,52 @@
-# Centurion Web Studio
+# Lumeli — digitalni studio
 
-**Prenesitev na boljšo spletno prisotnost**
+Spletna stran **Lumeli**, digitalnega studia pod okriljem Centurion d.o.o.
 
-Centurion Web Studio je profesionalna dejavnost za spletno razvoj, povezana z Centurion d.o.o.
+- Predvidena produkcijska domena: **https://lumeli.net** (registrirana pri NEOSERV; DNS/gostovanje pred prvo objavo preveriti).
+- Glavna veja: `main`.
+- Stack: Next.js 16 App Router, React 19, TypeScript, Tailwind CSS.
+- Prikazani projekti: BlogLab.eu, Black Raven Solutions, Zavod ZZT in Moj Glas Šteje.
 
-## Storitve
+## Samostojne podstrani
 
-- **Poslovena spletna stran** - Polnostvena spletna prisotnost za vaše podjetje
-- **Landing page** - Kratka, učinkovita stran za predvajanje ponudbe
-- **Ponovno oblikovanje** - Modernizacija obstoječe spletne strani
-- **Popravki** - Reševanje tveganj in optimizacija
-- **SEO & Performance** - Napredna optimizacija za iskalno ujemanje
-- **Vzdrževanje** - Redelna nadzor in posodobitve
+`/`, `/storitve`, `/portfolio`, `/paketi`, `/ponudba`, `/kuponi`, `/o-nas`, `/kontakt`, `/politika-zasebnosti`. V portfelju so še štiri namenske predstavitve projektov. Vsak element glavnega in mobilnega menija je prava povezava.
 
-## Paketi
-
-- **START** - Osnovni paket za začetnike
-- **BUSINESS** - Profesionalni paket za srednja podjetja
-- **GROWTH** - Napredni paket z integracijami
-
-## Začetak
+## Razvoj in testiranje
 
 ```bash
-npm install
+npm ci
 npm run dev
+npm run typecheck
+npm run lint
+npm test
+npm run build
+npm audit --omit=dev
 ```
 
-## Produktivacija
+## Black Friday 2026
 
-Spremenite spremenljivke okolja v `.env.local`:
+Koda `BLACKFRIDAY30`: 30 % popusta na Lumeli pakete in storitve med 20. in 30. novembrom 2026 (slovenski čas). Po izteku se promocijske oznake samodejno umaknejo.
 
-```bash
-NEXT_PUBLIC_SITE_URL=https://centurion-web-studio.github.io
-SMTP_HOST=smtpout.secureserver.net
-SMTP_PORT=465
-SMTP_USER=vaš-email
-SMTP_PASS=vaša-geslo
-```
+`/kuponi` vsebuje 4 samostojne vizualne kupone. Datoteke `public/coupons/*.svg` so izvor; `scripts/render_coupons.py` izdela dejanske PNG in PDF izvoze ter ZIP. Namenska GitHub Actions avtomatizacija objavi izvozene datoteke.
 
-## GitHub Pages
+## Objava na spletu
 
-Projekt se lahko objavi na GitHub Pages s pomočjo GitHub Actions:
+GitHub Actions **CI ni produkcijsko gostovanje**. Za Next.js API poti potrebujemo ponudnika z Next.js strežniškim okoljem.
 
-1. Nastavite `.github/workflows/pages.yml`
-2. Vključite GitHub Pages v nastavitvah repozitorija
-3. Izbirite `gh-pages` vejo kot vir
+1. Na [Netlify](https://app.netlify.com/start) povežite GitHub in uvozite `DDAY2301/centurion-web-studio`.
+2. Izberite **main** kot produkcijsko vejo in potrdite zaznavo **Next.js**. Nastavitev `netlify.toml` določa Node 22 in `npm run build`.
+3. Najprej preverite deploy na `*.netlify.app`: naslovnico, navigacijo, `/kuponi`, prenos PNG/PDF in 4 reference.
+4. V Netlify dodajte domeni `lumeli.net` in `www.lumeli.net`.
+5. V nadzorni plošči **NEOSERV** uredite samo DNS zapise po navodilih Netlify za ta konkretni projekt. Menjava NEOSERV imenskih strežnikov ni nujna.
+6. Preverite HTTPS in preusmeritve ter posodobite produkcijsko spremenljivko `NEXT_PUBLIC_SITE_URL=https://lumeli.net`.
+7. Pred aktivacijo kontaktnega obrazca uredite dejanski poštni naslov/ponudnika, zaščito pred zlorabo in popolno politiko zasebnosti.
 
-## Vite Konfiguracija
+**Opozorilo:** `/api/contact` in `/api/coupons` privzeto zavračata neaktivne integracije. Gradnja strani ne pomeni, da sta dejansko pošiljanje povpraševanj ali avtomatsko unovčenje kuponov omogočena.
 
-Če uporabljate Vite namesto Next.js:
+## AI/Claude razvoj
 
-```js
-// vite.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+Za navodila samostojnemu razvijalcu glejte `CLAUDE.md`.
 
-export default defineConfig({
-  plugins: [react()],
-  base: '/centurion-web-studio/',
-  server: {
-    port: 3000,
-    open: true
-  }
-});
-```
+## Varnost
 
-## Avtentikacija
-
-Za zasedbo kupone in kontakt oblike je potrebn server stran z:
-
-- Node.js (v18+)
-- Express ali Next.js API
-- SMTP strežnik za pošiljanje sporočil
-
-## License
-
-Vsi pravice pridržani. Ta projekt je del dela Centurion Web Studio.
-
-## Kontakt
-
-info@centurion-web-studio.example
+Poverilnic nikoli ne shranjujte v Git. `.env.example` vsebuje le varne vzorčne nastavitve.
