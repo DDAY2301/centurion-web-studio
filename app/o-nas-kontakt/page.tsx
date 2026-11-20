@@ -1,3 +1,4 @@
+import InteractiveForm from '@/components/InteractiveForm';
 import Link from 'next/link';
 
 export const revalidate = 3600;
@@ -139,32 +140,7 @@ export default function ONasKontaktPage() {
                   Uporabite spodnjo obliko za povpraševanje ali pišite neposredno na email.
                 </p>
 
-                <form
-                  action="/api/contact"
-                  method="POST"
-                  className="space-y-6"
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    const form = e.target as HTMLFormElement;
-                    const formData = new FormData(form);
-                    const data = Object.fromEntries(formData.entries());
-
-                    try {
-                      const response = await fetch('/api/contact', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
-                      });
-
-                      if (response.ok) {
-                        form.reset();
-                        alert('Hvala! Vaša sporošila bom prejel/a.');
-                      }
-                    } catch (error) {
-                      alert('Prišlo je do napake. Poskusite znova.');
-                    }
-                  }}
-                >
+                <InteractiveForm locale="sl" className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-brand-light mb-2">
@@ -269,7 +245,7 @@ export default function ONasKontaktPage() {
                   <p className="text-xs text-brand-light text-center">
                     * Obvezna polja
                   </p>
-                </form>
+                </InteractiveForm>
               </div>
             </div>
           </div>
