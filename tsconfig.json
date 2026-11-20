@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "useDefineForClassFields": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "allowImportingTsExtensions": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "importsNotUsedAsValues": "error",
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "references": [{ "path": "./tsconfig.json" }]
+}

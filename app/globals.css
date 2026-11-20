@@ -1,0 +1,179 @@
+/*
+  CENTURION WEB STUDIO - Premium Design System
+  Professional web development agency website
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom properties for design tokens */
+:root {
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+
+  /* Colors - Dark Charcoal System */
+  --color-brand-dark: #0a0a0a;
+  --color-brand-darker: #050505;
+  --color-brand-mid: #1a1a1a;
+  --color-brand-slate: #2d2d2d;
+  --color-brand-subtle: #404040;
+  --color-brand-border: #323232;
+  --color-brand-light: #5a5a5a;
+
+  /* Accent Colors */
+  --color-accent-primary: #2ecc71;
+  --color-accent-secondary: #3498db;
+  --color-accent-tertiary: #9b59b6;
+
+  /* Semantic Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e0e0e0;
+  --color-text-disabled: #8a8a8a;
+  --color-text-link: #3498db;
+
+  /* Backgrounds */
+  --color-bg-primary: var(--color-brand-dark);
+  --color-bg-secondary: #121212;
+  --color-bg-card: #1a1a1a;
+  --color-bg-hover: rgba(255, 255, 255, 0.05);
+
+  /* Effects */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  --shadow-none: 0 0 0 0 rgba(0, 0, 0, 0);
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark theme styles */
+[data-theme="dark"] {
+  --color-brand-dark: #0a0a0a;
+  --color-brand-darker: #050505;
+  --color-brand-mid: #1a1a1a;
+  --color-brand-subtle: #404040;
+  --color-brand-border: #323232;
+  --color-brand-light: #5a5a5a;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-primary);
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-accent-primary);
+  color: var(--color-bg-primary);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: top var(--transition-normal);
+  z-index: 100;
+}
+
+.skip-link:focus-visible {
+  top: 6px;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Container queries fallback */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: 0;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding-inline: 2rem;
+  }
+}

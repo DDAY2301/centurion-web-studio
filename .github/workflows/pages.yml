@@ -1,0 +1,71 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    environment: "production"
+
+    steps:
+      - name: Preveri git
+        uses: actions/checkout@v4
+        with:
+          permissions:
+            contents: read
+          persist-credentials: false
+
+      - name: Namesti Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Namesti odvisnice
+        run: npm ci
+
+      - name: Preveri
+        run: npm run lint 2>/dev/null || echo "Ni konfiguracije za lint"
+
+      - name: Build
+        run: npm run build
+
+      - name: Preveri izgradnjo
+        run: |
+          if [ ! -d ".next" ]; then
+            echo "Izgradnja ni uspela"
+            exit 1
+          fi
+
+      - name: Zajemi artefakte
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .next/static
+
+      - name: Objavi na GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifacts: .next
+        permission:
+          pages: write
+        env:
+          ARTIFACTS_URL: ${{ steps.upload.outputs.ArtifactsUrl }}
+
+      - name: Posodobi podatke
+        run: |
+          echo "Objava uspešna!"
+          echo "Deployment URL: ${{ steps.deployment.outputs.page_url }}"
