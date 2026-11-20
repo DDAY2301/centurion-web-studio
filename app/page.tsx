@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import InteractiveForm from '@/components/InteractiveForm';
 import BlackFridayBanner from '@/components/BlackFridayBanner';
 
 export const revalidate = 3600;
@@ -155,35 +156,7 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white rounded-2xl p-8 border border-brand-border">
-                <form
-                  action="/api/contact"
-                  method="POST"
-                  className="space-y-6"
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    const form = e.target as HTMLFormElement;
-                    const formData = new FormData(form);
-                    const data = Object.fromEntries(formData.entries());
-
-                    try {
-                      const response = await fetch('/api/contact', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
-                      });
-
-                      if (response.ok) {
-                        form.reset();
-                        alert('Thank you! Please mention code BLACKFRIDAY30 for your discount.');
-                      } else {
-                        const error = await response.json();
-                        alert(`Error: ${error.error || 'Something went wrong'}`);
-                      }
-                    } catch (error) {
-                      alert('Please try again later.');
-                    }
-                  }}
-                >
+                <InteractiveForm locale="en" className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-brand-light mb-2">
@@ -283,7 +256,7 @@ export default function HomePage() {
                       className="mt-1 rounded border-brand-border bg-white"
                     />
                     <label htmlFor="consent" className="text-xs text-brand-light">
-                      I agree to the <Link href="/privacy-policy" className="text-accent-primary hover:text-accent-primary/80">Privacy Policy</Link>
+                      I agree to the <Link href="/politika-zasebnosti" className="text-accent-primary hover:text-accent-primary/80">Privacy Policy</Link>
                     </label>
                   </div>
 
@@ -297,7 +270,7 @@ export default function HomePage() {
                   <p className="text-xs text-brand-light text-center">
                     * Required fields. Mention code BLACKFRIDAY30 for -30% discount.
                   </p>
-                </form>
+                </InteractiveForm>
               </div>
             </div>
           </div>
