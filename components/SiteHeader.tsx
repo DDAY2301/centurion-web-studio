@@ -41,7 +41,7 @@ export default function SiteHeader() {
           aria-expanded={open}
           aria-controls="lumeli-menu"
           onClick={() => setOpen((value) => !value)}
-          className="inline-flex min-h-[44px] items-center gap-3 rounded-lg border border-[#c6d0c4] px-4 text-sm font-semibold text-[#20362d] transition-colors hover:bg-[#e8ebe2] "
+          className="inline-flex min-h-[44px] items-center gap-3 rounded-lg border border-[#c6d0c4] px-4 text-sm font-semibold text-[#20362d] transition-colors hover:bg-[#e8ebe2]"
         >
           <span>{open ? 'Zapri' : 'Meni'}</span>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
@@ -50,7 +50,7 @@ export default function SiteHeader() {
         </button>
         </div>
       </div>
-      <nav id="lumeli-menu" aria-label="Glavna navigacija" hidden={!open} className="max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-[#d9ded4] bg-[#fbfaf6] px-5 pb-5 pt-4 shadow-lg lg:hidden">
+      <nav id="lumeli-menu" aria-label="Glavna navigacija" hidden={!open} className="max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-[#d9ded4] bg-[#fbfaf6] px-5 pb-5 pt-4 shadow-lg">
         <ul className="mx-auto grid max-w-5xl gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {siteNavigation.map((item) => {
             const active = isCurrentPage(pathname, item.href);
