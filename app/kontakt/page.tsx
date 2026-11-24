@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: 'Kontakt', description: 'Začnite pog
 export default function ContactPage() {
   return (
     <main id="main">
-      <PageIntro eyebrow="Kontakt" title="Povejmo si kaj o vaši ideji." description="Nova spletna stran, prenova ali projekt po meri? Dobro izhodišče je pogovor o tem, kaj si želite doseči." />
+      <PageIntro eyebrow="Kontakt" title="Povejte kaj o vaši ideji." description="Nova spletna stran, prenova ali projekt po meri? Dobro izhodišče je pogovor o tem, kaj si želite doseči." />
       <section className="bg-white px-5 py-24 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.2fr_1fr]">
           <div className="rounded-[2rem] bg-[#e3ede3] p-9 sm:p-12">
