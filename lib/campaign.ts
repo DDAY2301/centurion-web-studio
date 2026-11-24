@@ -4,8 +4,8 @@ export const CAMPAIGN = {
   code: 'BLACKFRIDAY30',
   discountPercent: 30,
   start: '2026-11-19T23:00:00.000Z', // 20 Nov 00:00 in Ljubljana
-  endExclusive: '2026-11-30T23:00:00.000Z', // 1 Dec 00:00 in Ljubljana
-  endLabel: '30. november 2026 ob 23.59',
+  endExclusive: '2026-12-07T23:00:00.000Z', // 8 Dec 00:00 in Ljubljana
+  endLabel: '7. december 2026 ob 23.59',
   domain: 'https://lumeli.net',
   terms: '30 % popusta na dogovorjeno ceno naših storitev. Morebitni stroški zunanjih ponudnikov niso vključeni, razen če je dogovorjeno drugače.',
 } as const;

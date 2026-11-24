@@ -2,15 +2,16 @@ import { CAMPAIGN, COUPON_VARIANTS, getDiscountedPrice, isCampaignActive } from 
 
 describe('Lumeli Black Friday campaign', () => {
   const firstDay = new Date('2026-11-20T12:00:00+01:00');
-  const expired = new Date('2026-12-01T00:00:00+01:00');
+  const expired = new Date('2026-12-08T00:00:00+01:00');
 
   it('starts at 20 November midnight in Ljubljana', () => {
     expect(isCampaignActive(new Date('2026-11-19T22:59:59Z'))).toBe(false);
     expect(isCampaignActive(new Date(CAMPAIGN.start))).toBe(true);
   });
 
-  it('expires at 30 November 23:59:59 in Ljubljana', () => {
-    expect(isCampaignActive(new Date('2026-11-30T22:59:59Z'))).toBe(true);
+  it('expires at 7 December 23:59:59 in Ljubljana', () => {
+    expect(isCampaignActive(new Date('2026-12-07T22:59:59Z'))).toBe(true);
+    expect(isCampaignActive(new Date('2026-12-01T12:00:00+01:00'))).toBe(true);
     expect(isCampaignActive(expired)).toBe(false);
   });
 

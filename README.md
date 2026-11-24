@@ -25,7 +25,7 @@ npm audit --omit=dev
 
 ## Black Friday 2026
 
-Koda `BLACKFRIDAY30`: 30 % popusta na Lumeli pakete in storitve med 20. in 30. novembrom 2026 (slovenski čas). Po izteku se promocijske oznake samodejno umaknejo.
+Koda `BLACKFRIDAY30`: 30 % popusta na Lumeli pakete in storitve od 20. novembra do vključno 7. decembra 2026 (slovenski čas). Po izteku se promocijske oznake samodejno umaknejo.
 
 `/kuponi` vsebuje 4 samostojne vizualne kupone. Datoteke `public/coupons/*.svg` so izvor; `scripts/render_coupons.py` izdela dejanske PNG in PDF izvoze ter ZIP. Namenska GitHub Actions avtomatizacija objavi izvozene datoteke.
 
