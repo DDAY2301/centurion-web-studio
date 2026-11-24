@@ -13,6 +13,7 @@ export default function SiteFooter() {
         <div>
           <Link href={href("/")} className="text-3xl font-semibold tracking-[-0.06em]">lumeli<span className="text-[#c98686]">.</span></Link>
           <p className="mt-4 max-w-sm text-sm leading-7 text-[#53675d]">{english ? "Beautiful websites. Smart digital solutions. Thoughtfully built." : "Lepe spletne strani. Pametne digitalne rešitve. Izdelane s premislekom."}</p>
+          <a href="mailto:dan.grmusa@gmail.com" className="mt-4 inline-block break-all text-sm font-semibold text-[#416b59] underline-offset-4 hover:underline">dan.grmusa@gmail.com</a>
         </div>
         <nav aria-label={english ? "Footer links" : "Povezave v nogi strani"}>
           <div className="grid grid-cols-2 gap-x-8 gap-y-3 sm:grid-cols-3">

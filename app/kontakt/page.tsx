@@ -21,8 +21,10 @@ export default function ContactPage() {
           </div>
           <aside className="rounded-[2rem] border border-[#dce4d9] p-9 sm:p-12">
             <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#416b59]">Kontaktni kanal</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-tight">Varen obrazec še pripravljamo.</h2>
-            <p className="mt-6 text-base leading-8 text-[#53675d]">Dokler pošiljanje ni preverjeno od začetka do konca, ne prikazujemo obrazca, ki bi sprejel vaše podatke brez dejanske dostave. Kontaktni kanal bo omogočen po nastavitvi storitve.</p>
+            <h2 className="mt-6 text-2xl font-semibold tracking-tight">Pišite nam.</h2>
+            <p className="mt-6 text-base leading-8 text-[#53675d]">Za povpraševanje, ponudbo ali informacije o projektu nam pošljite e-poštno sporočilo.</p>
+            <a href="mailto:dan.grmusa@gmail.com" className="mt-6 inline-block break-all text-lg font-semibold text-[#416b59] underline underline-offset-4">dan.grmusa@gmail.com</a>
+            <a href="mailto:dan.grmusa@gmail.com" className="mt-5 flex w-fit rounded-lg bg-[#20362d] px-6 py-3 text-sm font-semibold text-white hover:bg-[#365245]">Pošljite e-pošto ↗</a>
             <p className="mt-7 text-sm font-medium text-[#416b59]">Lumeli · blagovna znamka Centurion d.o.o.</p>
           </aside>
         </div>

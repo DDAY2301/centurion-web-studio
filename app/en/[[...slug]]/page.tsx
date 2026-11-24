@@ -48,7 +48,7 @@ export default async function EnglishPage({ params }: Props) {
           <h2 className="mt-5 text-2xl font-semibold tracking-tight">{card.title}</h2>
           <p className="mt-4 text-base leading-8 text-[#53675d]">{card.text}</p>
           {card.items && <ul className="mt-5 space-y-3 text-sm text-[#425b4e]">{card.items.map(item => <li key={item}>✓ {item}</li>)}</ul>}
-          {card.link && (card.link.startsWith('https://') ? <a href={card.link} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex font-semibold text-[#416b59] underline">{card.linkLabel} ↗</a> : <Link href={card.link} className="mt-6 inline-flex font-semibold text-[#416b59] underline">{card.linkLabel} ↗</Link>)}
+          {card.link && (card.link.startsWith('mailto:') ? <a href={card.link} className="mt-6 inline-flex break-all font-semibold text-[#416b59] underline underline-offset-4">{card.linkLabel}</a> : card.link.startsWith('https://') ? <a href={card.link} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex font-semibold text-[#416b59] underline">{card.linkLabel} ↗</a> : <Link href={card.link} className="mt-6 inline-flex font-semibold text-[#416b59] underline">{card.linkLabel} ↗</Link>)}
         </article>)}
       </div></section>
       {page.action && <section className="bg-[#e7eee6] px-5 py-12 sm:px-8"><div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5"><p className="text-2xl font-semibold tracking-tight">Lumeli · Digital studio</p><Link href={page.action.href} className="rounded-lg bg-[#20362d] px-7 py-4 text-sm font-semibold text-white hover:bg-[#365245]">{page.action.label} ↗</Link></div></section>}

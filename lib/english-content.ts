@@ -44,7 +44,7 @@ export const englishPages: Record<string, EnglishPage> = {
   ], action: { label: 'Contact us', href: '/en/kontakt' } },
   'kontakt': { title: 'Contact', eyebrow: 'Contact', heading: 'Tell us about your idea.', description: 'A new website, redesign or bespoke project? A conversation about your goals is a good place to start.', cards: [
     { title: 'Together we will find the right direction.', text: 'For our first conversation, it helps to know your business, target audience, desired pages and timeframe. You do not need to prepare everything in advance.' },
-    { title: 'Contact channel', text: 'Our online enquiry form is not yet available. We will enable it after end-to-end delivery is configured and verified.' }
+    { title: 'Email us', text: 'For enquiries, quotations or project information, contact us directly by email.', link: 'mailto:dan.grmusa@gmail.com', linkLabel: 'dan.grmusa@gmail.com' }
   ], action: { label: 'Explore services', href: '/en/storitve' } },
   'politika-zasebnosti': { title: 'Privacy', eyebrow: 'Privacy', heading: 'Your privacy matters.', description: 'Information about privacy and data processing on the Lumeli website.', cards: [
     { title: 'Data controller', text: 'Lumeli is a brand of Centurion d.o.o. The controller’s contact and registration details are pending completion.' },
