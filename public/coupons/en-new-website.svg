@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Lumeli Black Friday coupon A new website. A fresh first impression.">
+  <rect width="1200" height="630" fill="#F8F5EF"/>
+  <rect x="42" y="42" width="1116" height="546" rx="26" fill="#FFFFFF" stroke="#DBE4D9" stroke-width="2"/>
+  <path d="M888 42h242a28 28 0 0 1 28 28v485c-77-16-163-44-244-101-80-57-125-127-159-198-36-74-42-142-33-214z" fill="#DCE9DF" opacity=".77"/>
+  <circle cx="1080" cy="490" r="142" fill="none" stroke="#FFFFFF" stroke-width="28" opacity=".7"/>
+  <g font-family="DejaVu Sans,Arial,sans-serif">
+    <text x="100" y="113" font-size="39" font-weight="700" letter-spacing="-2" fill="#293B34">lumeli<tspan fill="#C9878A">.</tspan></text>
+    <rect x="803" y="79" width="284" height="44" rx="22" fill="#293B34"/>
+    <text x="945" y="108" font-size="17" font-weight="700" text-anchor="middle" letter-spacing="2" fill="#F8F5EF">BLACK FRIDAY 2026</text>
+    <text x="100" y="207" font-size="54" font-weight="700" letter-spacing="-2" fill="#293B34">A new website.</text>
+    <text x="100" y="268" font-size="54" font-weight="700" letter-spacing="-2" fill="#416B59">A fresh first impression.</text>
+    <text x="100" y="322" font-size="19" fill="#53675D">A website created for your business.</text>
+    <rect x="100" y="367" width="550" height="114" rx="18" fill="#F0F3EB"/>
+    <text x="128" y="405" font-size="16" font-weight="700" letter-spacing="1.5" fill="#53675D">PROMOTIONAL CODE</text>
+    <text x="128" y="457" font-size="36" font-weight="700" letter-spacing=".5" fill="#293B34">BLACKFRIDAY30</text>
+    <text x="814" y="435" font-size="88" font-weight="700" letter-spacing="-5" fill="#293B34">−30 %</text>
+    <text x="100" y="534" font-size="17" font-weight="700" fill="#416B59">lumeli.net</text>
+    <text x="100" y="563" font-size="14" fill="#53675D">Valid until 7 December 2026 • Discount on the agreed service price.</text>
+  </g>
+</svg>

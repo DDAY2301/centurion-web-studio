@@ -18,9 +18,10 @@ const paths = [
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return paths.map((path) => ({
-    url: domain + path,
+  return paths.flatMap((path) => [path, '/en' + (path === '/' ? '' : path)].map((localizedPath) => ({
+    url: domain + localizedPath,
+    alternates: { languages: { sl: domain + path, en: domain + '/en' + (path === '/' ? '' : path) } },
     changeFrequency: path === '/' ? 'weekly' : 'monthly',
     priority: path === '/' ? 1 : 0.6,
-  }));
+  })));
 }

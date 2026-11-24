@@ -13,7 +13,7 @@ ASSETS = ROOT / "public" / "coupons"
 IDS = ("new-website", "redesign", "landing-page", "custom-project")
 OUTPUTS = []
 
-for name in IDS:
+for name in (*IDS, *(f'en-{name}' for name in IDS)):
     svg = ASSETS / f"{name}.svg"
     if not svg.is_file():
         raise FileNotFoundError(f"Missing coupon source: {svg}")
@@ -35,9 +35,18 @@ for name in IDS:
 archive = ASSETS / "lumeli-black-friday-2026.zip"
 with ZipFile(archive, "w", ZIP_DEFLATED) as z:
     for output in OUTPUTS:
-        z.write(output, arcname=output.name)
+        if not output.name.startswith('en-'):
+            z.write(output, arcname=output.name)
 if archive.stat().st_size < 8000:
     raise ValueError(f"Coupon archive looks too small: {archive}")
 
 print("Generated:", ", ".join(str(p.relative_to(ROOT)) for p in OUTPUTS))
 print("Archive:", archive.relative_to(ROOT))
+
+english_archive = ASSETS / "lumeli-black-friday-2026-en.zip"
+with ZipFile(english_archive, "w", ZIP_DEFLATED) as z:
+    for output in OUTPUTS:
+        if output.name.startswith("en-"):
+            z.write(output, arcname=output.name)
+if english_archive.stat().st_size < 8000:
+    raise ValueError("English coupon archive looks too small")
