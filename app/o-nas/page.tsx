@@ -19,6 +19,24 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <section aria-labelledby="lumeli-team" className="border-t border-[#d9ded4] bg-[#f6f3ec] px-5 py-16 sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#416b59]">O podjetju</p>
+          <h2 id="lumeli-team" className="mt-4 text-4xl font-semibold tracking-[-.05em] text-[#20362d]">Ljudje za Lumeli.</h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#53675d]">Lumeli je digitalni studio pod okriljem družbe Centurion d.o.o.</p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            <article className="rounded-2xl border border-[#d9ded4] bg-white p-7 sm:p-9">
+              <h3 className="text-2xl font-semibold tracking-[-.035em] text-[#20362d]">Maj Klemec</h3>
+              <p className="mt-3 text-sm font-semibold text-[#416b59]">Direktor Centurion d.o.o.</p>
+            </article>
+            <article className="rounded-2xl border border-[#d9ded4] bg-white p-7 sm:p-9">
+              <h3 className="text-2xl font-semibold tracking-[-.035em] text-[#20362d]">Dan F. Grmuša</h3>
+              <p className="mt-3 text-sm font-semibold text-[#416b59]">Marketing Consultant &amp; Client Relations</p>
+              <p className="mt-3 text-sm leading-6 text-[#53675d]">Svetovanje na področju marketinga in odnosi s strankami.</p>
+            </article>
+          </div>
+        </div>
+      </section>
       <section className="bg-[#edf2e9] px-5 py-20 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-8">
           <h2 className="max-w-xl text-4xl font-semibold tracking-[-.05em]">Imate projekt, pri katerem lahko pomagamo?</h2>
