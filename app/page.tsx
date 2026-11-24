@@ -36,51 +36,51 @@ export default function HomePage() {
             <span>Slovenija · 2026</span>
           </div>
 
-          <div className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1.18fr)_minmax(330px,.82fr)] lg:gap-20 lg:py-28">
+          <div className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(300px,.8fr)] lg:gap-14 lg:py-16">
             <div>
               <p className="mb-7 flex items-center gap-3 text-xs font-semibold uppercase tracking-[.21em] text-[#a65b47]">
                 <span className="h-px w-9 bg-[#a65b47]" aria-hidden="true" />
                 Za podjetja, ki razmišljajo naprej
               </p>
 
-              <h1 className="max-w-[13ch] text-[clamp(3.55rem,7vw,7.5rem)] font-semibold leading-[.97] tracking-[-.078em]">
+              <h1 className="max-w-[15ch] text-[clamp(2.75rem,5.8vw,5.75rem)] font-semibold leading-[1.02] tracking-[-.065em]">
                 Spletne strani, ki pustijo <span className="font-serif font-normal italic tracking-[-.07em] text-[#b46b56]">vtis.</span>
               </h1>
 
-              <p className="mt-9 max-w-[37rem] text-base leading-8 text-[#566a5d] sm:text-lg sm:leading-9">
+              <p className="mt-6 max-w-[37rem] text-base leading-7 text-[#566a5d] sm:text-lg sm:leading-9">
                 Oblikujemo in razvijamo spletne strani, ki vaše podjetje predstavijo jasno,
                 samozavestno in profesionalno. Brez generičnih predlog. S premislekom o vsaki podrobnosti.
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-3">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
                   href="/portfolio"
-                  className="inline-flex min-h-13 items-center justify-center gap-6 bg-[#20362d] px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#365245]"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-6 rounded-lg bg-[#20362d] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#365245]"
                 >
                   Oglejte si naše delo <span aria-hidden="true">↗</span>
                 </Link>
                 <Link
-                  href="/storitve"
-                  className="inline-flex min-h-13 items-center justify-center gap-6 border border-[#9eaa9f] px-7 py-4 text-sm font-semibold text-[#20362d] transition-colors hover:border-[#20362d] hover:bg-white/70"
+                  href="/ponudba"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-6 rounded-lg border border-[#9eaa9f] px-6 py-3 text-sm font-semibold text-[#20362d] transition-colors hover:border-[#20362d] hover:bg-white/70"
                 >
-                  Kaj lahko ustvarimo <span aria-hidden="true">↗</span>
+                  Pridobite ponudbo <span aria-hidden="true">↗</span>
                 </Link>
               </div>
 
-              <p className="mt-12 border-l-2 border-[#b46b56] pl-5 text-sm leading-7 text-[#65746a]">
+              <p className="mt-8 border-l-2 border-[#b46b56] pl-5 text-sm leading-7 text-[#65746a]">
                 Lumeli je digitalni studio pod okriljem Centurion d.o.o.
               </p>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[540px] pb-7 pl-5 sm:pl-8 lg:pb-12">
-              <div className="relative flex aspect-[.89] flex-col justify-between overflow-hidden bg-[#20362d] p-7 text-[#f4f2e9] sm:p-10">
-                <div className="flex items-center justify-between border-b border-[#668074]/45 pb-5 text-[11px] font-semibold uppercase tracking-[.2em]">
+            <div className="relative mx-auto w-full max-w-[500px] pb-5 pl-3 sm:pl-5 lg:pb-7">
+              <div className="relative flex min-h-[320px] flex-col justify-between gap-6 overflow-hidden rounded-2xl border border-[#365245] bg-[#20362d] p-6 text-[#f4f2e9] shadow-[0_20px_50px_rgba(32,54,45,.13)] sm:min-h-[380px] sm:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#668074]/45 pb-4 text-[10px] font-semibold uppercase tracking-[.2em]">
                   <span>Digital first</span>
                   <span>Studio / Lumeli</span>
                 </div>
                 <div className="relative">
-                  <p className="font-serif text-[clamp(7rem,15vw,13rem)] italic leading-none tracking-[-.12em] text-[#cbd8ca]" aria-hidden="true">L.</p>
-                  <p className="relative -mt-3 max-w-[15rem] text-3xl font-semibold leading-[1.08] tracking-[-.055em] sm:text-4xl">
+                  <p className="font-serif text-[clamp(6rem,10vw,9rem)] italic leading-none tracking-[-.12em] text-[#cbd8ca]" aria-hidden="true">L.</p>
+                  <p className="relative -mt-1 max-w-[15rem] text-3xl font-semibold leading-[1.08] tracking-[-.055em] sm:text-4xl">
                     Manj hrupa.<br />Več značaja.
                   </p>
                 </div>
@@ -90,7 +90,7 @@ export default function HomePage() {
                   <span>Razvoj</span>
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 flex w-[70%] items-center justify-between bg-[#c58f78] px-5 py-5 text-xs font-semibold uppercase tracking-[.12em] text-[#20362d] sm:px-7 sm:py-6">
+              <div className="absolute bottom-0 left-0 flex w-[82%] items-center justify-between gap-3 rounded-lg bg-[#c58f78] px-4 py-3 text-[10px] font-semibold uppercase tracking-[.12em] text-[#20362d] sm:w-[70%] sm:px-6 sm:py-4">
                 <span>Digitalno, vendar osebno</span>
                 <span aria-hidden="true">↗</span>
               </div>

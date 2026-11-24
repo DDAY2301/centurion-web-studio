@@ -11,6 +11,9 @@ describe('public site navigation', () => {
       expect(existsSync(location)).toBe(true);
     }
   });
+  it('includes all eight public menu options in order', () => {
+    expect(siteNavigation.map((item) => item.label)).toEqual(['Domov', 'Storitve', 'Reference', 'Paketi', 'Ponudba', 'Kuponi', 'O nas', 'Kontakt']);
+  });
   it('does not have duplicate routes', () => {
     expect(new Set(siteNavigation.map((item) => item.href)).size).toBe(siteNavigation.length);
   });
